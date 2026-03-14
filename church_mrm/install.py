@@ -88,26 +88,92 @@ def create_default_relationship_types():
 
 
 def create_workspace_sidebar():
-    """Create the Workspace Sidebar record so Church MRM appears in the desk sidebar."""
-    if not frappe.db.exists("Workspace Sidebar", "Church MRM"):
-        doc = frappe.new_doc("Workspace Sidebar")
-        doc.name = "Church MRM"
-        doc.title = "Church MRM"
-        doc.header_icon = "heart"
-        doc.module = "Church MRM"
-        doc.standard = 0
-        doc.append("items", {
-            "label": "Home",
-            "link_type": "Workspace",
-            "type": "Link",
-            "link_to": "Church MRM",
-            "child": 0,
-            "collapsible": 1,
-            "indent": 0,
-            "idx": 1,
-        })
-        doc.insert(ignore_permissions=True)
-        frappe.db.commit()
+    """Create the Workspace Sidebar record so Church MRM appears in the desk sidebar with full rail nav."""
+    # Delete and recreate to ensure latest items
+    if frappe.db.exists("Workspace Sidebar", "Church MRM"):
+        frappe.delete_doc("Workspace Sidebar", "Church MRM", ignore_permissions=True, force=True)
+
+    doc = frappe.new_doc("Workspace Sidebar")
+    doc.name = "Church MRM"
+    doc.title = "Church MRM"
+    doc.header_icon = "heart"
+    doc.module = "Church MRM"
+    doc.standard = 0
+
+    sidebar_items = [
+        # Home link
+        {"label": "Home", "link_type": "Workspace", "type": "Link", "link_to": "Church MRM",
+         "child": 0, "collapsible": 1, "indent": 0, "icon": "home"},
+
+        # --- Contacts & Members ---
+        {"label": "Contacts & Members", "link_type": "DocType", "type": "Section Break", "link_to": None,
+         "child": 0, "collapsible": 1, "indent": 1, "icon": "users"},
+        {"label": "Church Member", "link_type": "DocType", "type": "Link", "link_to": "Church Member",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Church Group", "link_type": "DocType", "type": "Link", "link_to": "Church Group",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Church Relationship", "link_type": "DocType", "type": "Link", "link_to": "Church Relationship",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Contact", "link_type": "DocType", "type": "Link", "link_to": "Contact",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+
+        # --- Contributions & Accounting ---
+        {"label": "Contributions", "link_type": "DocType", "type": "Section Break", "link_to": None,
+         "child": 0, "collapsible": 1, "indent": 1, "icon": "income"},
+        {"label": "Donation", "link_type": "DocType", "type": "Link", "link_to": "Donation",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Donation Type", "link_type": "DocType", "type": "Link", "link_to": "Donation Type",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Pledge", "link_type": "DocType", "type": "Link", "link_to": "Pledge",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Journal Entry", "link_type": "DocType", "type": "Link", "link_to": "Journal Entry",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Payment Entry", "link_type": "DocType", "type": "Link", "link_to": "Payment Entry",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Chart of Accounts", "link_type": "DocType", "type": "Link", "link_to": "Account",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+
+        # --- Memberships ---
+        {"label": "Memberships", "link_type": "DocType", "type": "Section Break", "link_to": None,
+         "child": 0, "collapsible": 1, "indent": 1, "icon": "membership"},
+        {"label": "Membership", "link_type": "DocType", "type": "Link", "link_to": "Membership",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Membership Type", "link_type": "DocType", "type": "Link", "link_to": "Membership Type",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+
+        # --- Events ---
+        {"label": "Events", "link_type": "DocType", "type": "Section Break", "link_to": None,
+         "child": 0, "collapsible": 1, "indent": 1, "icon": "calendar"},
+        {"label": "Church Event", "link_type": "DocType", "type": "Link", "link_to": "Church Event",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+
+        # --- Reports ---
+        {"label": "Reports", "link_type": "DocType", "type": "Section Break", "link_to": None,
+         "child": 0, "collapsible": 1, "indent": 1, "icon": "chart"},
+        {"label": "Giving Statement", "link_type": "Report", "type": "Link", "link_to": "Giving Statement",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Donation Summary", "link_type": "Report", "type": "Link", "link_to": "Donation Summary",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Membership Report", "link_type": "Report", "type": "Link", "link_to": "Membership Report",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Pledge Fulfillment", "link_type": "Report", "type": "Link", "link_to": "Pledge Fulfillment",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Event Attendance", "link_type": "Report", "type": "Link", "link_to": "Event Attendance",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+
+        # --- Settings ---
+        {"label": "Settings", "link_type": "DocType", "type": "Section Break", "link_to": None,
+         "child": 0, "collapsible": 1, "indent": 1, "icon": "setting-gear"},
+        {"label": "Church Relationship Type", "link_type": "DocType", "type": "Link", "link_to": "Church Relationship Type",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+    ]
+
+    for idx, item in enumerate(sidebar_items, 1):
+        item["idx"] = idx
+        doc.append("items", item)
+
+    doc.insert(ignore_permissions=True)
+    frappe.db.commit()
 
 
 def create_desktop_icon():
