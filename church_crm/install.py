@@ -7,6 +7,8 @@ def after_install():
     create_default_donation_types()
     create_default_membership_types()
     create_default_relationship_types()
+    create_workspace_sidebar()
+    create_desktop_icon()
 
 
 def create_contact_custom_fields():
@@ -83,3 +85,42 @@ def create_default_relationship_types():
             doc.is_active = 1
             doc.insert(ignore_permissions=True)
     frappe.db.commit()
+
+
+def create_workspace_sidebar():
+    """Create the Workspace Sidebar record so Church CRM appears in the desk sidebar."""
+    if not frappe.db.exists("Workspace Sidebar", "Church CRM"):
+        doc = frappe.new_doc("Workspace Sidebar")
+        doc.name = "Church CRM"
+        doc.title = "Church CRM"
+        doc.header_icon = "heart"
+        doc.module = "Church CRM"
+        doc.standard = 0
+        doc.append("items", {
+            "label": "Home",
+            "link_type": "Workspace",
+            "type": "Link",
+            "link_to": "Church CRM",
+            "child": 0,
+            "collapsible": 1,
+            "indent": 0,
+            "idx": 1,
+        })
+        doc.insert(ignore_permissions=True)
+        frappe.db.commit()
+
+
+def create_desktop_icon():
+    """Create the Desktop Icon so Church CRM appears on the desk home page."""
+    if not frappe.db.exists("Desktop Icon", "Church CRM"):
+        doc = frappe.new_doc("Desktop Icon")
+        doc.label = "Church CRM"
+        doc.icon_type = "Link"
+        doc.link_type = "Workspace Sidebar"
+        doc.link_to = "Church CRM"
+        doc.icon = "heart"
+        doc.app = "church_crm"
+        doc.bg_color = "blue"
+        doc.hidden = 0
+        doc.insert(ignore_permissions=True)
+        frappe.db.commit()

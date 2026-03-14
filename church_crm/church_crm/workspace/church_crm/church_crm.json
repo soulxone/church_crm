@@ -420,5 +420,7 @@
       "type": "Report"
     }
   ],
-  "title": "Church CRM"
+  "title": "Church CRM",
+  "type": "Workspace",
+  "app": "church_crm"
 }
