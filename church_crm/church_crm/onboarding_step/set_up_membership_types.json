@@ -1,0 +1,17 @@
+{
+  "action": "Go to Page",
+  "action_label": "Set Up Membership Types",
+  "creation": "2026-03-14 12:00:00.000000",
+  "description": "Define the different membership categories in your church (e.g., Regular, Youth, Senior, Associate). Set the duration for each type.",
+  "doctype": "Onboarding Step",
+  "is_complete": 0,
+  "is_single": 0,
+  "is_skipped": 0,
+  "modified": "2026-03-14 13:00:00.000000",
+  "modified_by": "Administrator",
+  "name": "Set Up Membership Types",
+  "owner": "Administrator",
+  "path": "/app/membership-type",
+  "reference_document": "Membership Type",
+  "title": "Set Up Membership Types"
+}

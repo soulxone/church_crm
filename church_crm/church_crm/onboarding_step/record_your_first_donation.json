@@ -1,0 +1,16 @@
+{
+  "action": "Create Entry",
+  "action_label": "Record a Donation",
+  "creation": "2026-03-14 12:00:00.000000",
+  "description": "Record a donation from a church member. When submitted, it automatically creates a Journal Entry in ERPNext for your accounting records.",
+  "doctype": "Onboarding Step",
+  "is_complete": 0,
+  "is_single": 0,
+  "is_skipped": 0,
+  "modified": "2026-03-14 13:00:00.000000",
+  "modified_by": "Administrator",
+  "name": "Record Your First Donation",
+  "owner": "Administrator",
+  "reference_document": "Donation",
+  "title": "Record Your First Donation"
+}

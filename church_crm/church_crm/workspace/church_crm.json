@@ -1,13 +1,20 @@
 {
-  "charts": [],
-  "content": null,
+  "charts": [
+    {
+      "chart_name": "Donations This Year",
+      "chart_type": "Custom",
+      "label": "Donations This Year"
+    }
+  ],
+  "content": "[{\"id\":1,\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Church CRM Setup\",\"col\":12}},{\"id\":2,\"type\":\"chart\",\"data\":{\"chart_name\":\"Donations This Year\",\"col\":12}},{\"id\":3,\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":4,\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":5,\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Member\",\"col\":3}},{\"id\":6,\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Donation\",\"col\":3}},{\"id\":7,\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Event\",\"col\":3}},{\"id\":8,\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Pledge\",\"col\":3}},{\"id\":9,\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":10,\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Church Members\",\"col\":4}},{\"id\":11,\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Memberships\",\"col\":4}},{\"id\":12,\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Donations This Month\",\"col\":4}},{\"id\":13,\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":14,\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports & Analytics</b></span>\",\"col\":12}},{\"id\":15,\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Giving Statement\",\"col\":3}},{\"id\":16,\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Donation Summary\",\"col\":3}},{\"id\":17,\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Membership Report\",\"col\":3}},{\"id\":18,\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pledge Fulfillment\",\"col\":3}}]",
   "creation": "2026-03-14 12:00:00.000000",
   "custom_blocks": [],
   "doctype": "Workspace",
   "for_user": "",
   "hide_custom": 0,
-  "icon": "heart",
+  "icon": "church_crm",
   "idx": 0,
+  "indicator_color": "purple",
   "is_hidden": 0,
   "label": "Church CRM",
   "links": [
@@ -20,7 +27,9 @@
       "type": "header"
     },
     {
+      "dependencies": "",
       "hidden": 0,
+      "icon": "users",
       "is_query_report": 0,
       "label": "Church Member",
       "link_count": 0,
@@ -31,6 +40,7 @@
     },
     {
       "hidden": 0,
+      "icon": "organization",
       "is_query_report": 0,
       "label": "Church Group",
       "link_count": 0,
@@ -41,6 +51,7 @@
     },
     {
       "hidden": 0,
+      "icon": "share-people",
       "is_query_report": 0,
       "label": "Church Relationship",
       "link_count": 0,
@@ -61,6 +72,7 @@
     },
     {
       "hidden": 0,
+      "icon": "user",
       "is_query_report": 0,
       "label": "Contact",
       "link_count": 0,
@@ -79,6 +91,7 @@
     },
     {
       "hidden": 0,
+      "icon": "income",
       "is_query_report": 0,
       "label": "Donation",
       "link_count": 0,
@@ -99,6 +112,7 @@
     },
     {
       "hidden": 0,
+      "icon": "clipboard",
       "is_query_report": 0,
       "label": "Pledge",
       "link_count": 0,
@@ -109,6 +123,7 @@
     },
     {
       "hidden": 0,
+      "icon": "accounting",
       "is_query_report": 0,
       "label": "Journal Entry",
       "link_count": 0,
@@ -119,6 +134,7 @@
     },
     {
       "hidden": 0,
+      "icon": "accounting",
       "is_query_report": 0,
       "label": "Payment Entry",
       "link_count": 0,
@@ -129,6 +145,7 @@
     },
     {
       "hidden": 0,
+      "icon": "general-ledger",
       "is_query_report": 0,
       "label": "Chart of Accounts",
       "link_count": 0,
@@ -157,6 +174,7 @@
     },
     {
       "hidden": 0,
+      "icon": "membership",
       "is_query_report": 0,
       "label": "Membership",
       "link_count": 0,
@@ -185,6 +203,7 @@
     },
     {
       "hidden": 0,
+      "icon": "calendar",
       "is_query_report": 0,
       "label": "Church Event",
       "link_count": 0,
@@ -244,6 +263,16 @@
     {
       "hidden": 0,
       "is_query_report": 1,
+      "label": "Event Attendance",
+      "link_count": 0,
+      "link_to": "Event Attendance",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
       "label": "Profit and Loss Statement",
       "link_count": 0,
       "link_to": "Profit and Loss Statement",
@@ -271,6 +300,7 @@
     },
     {
       "hidden": 0,
+      "icon": "setting-gear",
       "is_query_report": 0,
       "label": "Donation Type",
       "link_count": 0,
@@ -281,6 +311,7 @@
     },
     {
       "hidden": 0,
+      "icon": "setting-gear",
       "is_query_report": 0,
       "label": "Membership Type",
       "link_count": 0,
@@ -291,6 +322,7 @@
     },
     {
       "hidden": 0,
+      "icon": "setting-gear",
       "is_query_report": 0,
       "label": "Church Relationship Type",
       "link_count": 0,
@@ -300,11 +332,24 @@
       "type": "Link"
     }
   ],
-  "modified": "2026-03-14 12:00:00.000000",
+  "modified": "2026-03-14 13:00:00.000000",
   "modified_by": "Administrator",
   "module": "Church CRM",
   "name": "Church CRM",
-  "number_cards": [],
+  "number_cards": [
+    {
+      "label": "Total Church Members",
+      "number_card_name": "Total Church Members"
+    },
+    {
+      "label": "Active Memberships",
+      "number_card_name": "Active Memberships"
+    },
+    {
+      "label": "Donations This Month",
+      "number_card_name": "Donations This Month"
+    }
+  ],
   "owner": "Administrator",
   "parent_page": "",
   "public": 1,
@@ -313,32 +358,68 @@
   "sequence_id": 30,
   "shortcuts": [
     {
-      "color": "Green",
+      "color": "#6C5CE7",
       "doc_view": "New",
+      "icon": "users",
       "label": "New Member",
       "link_to": "Church Member",
       "type": "DocType"
     },
     {
-      "color": "Blue",
+      "color": "#00B894",
       "doc_view": "New",
+      "icon": "income",
       "label": "New Donation",
       "link_to": "Donation",
       "type": "DocType"
     },
     {
-      "color": "Orange",
+      "color": "#FDCB6E",
       "doc_view": "New",
+      "icon": "calendar",
       "label": "New Event",
       "link_to": "Church Event",
       "type": "DocType"
     },
     {
-      "color": "Yellow",
+      "color": "#E17055",
       "doc_view": "New",
+      "icon": "clipboard",
       "label": "New Pledge",
       "link_to": "Pledge",
       "type": "DocType"
+    },
+    {
+      "color": "#0984E3",
+      "doc_view": "",
+      "icon": "chart-line",
+      "label": "Giving Statement",
+      "link_to": "Giving Statement",
+      "type": "Report"
+    },
+    {
+      "color": "#636E72",
+      "doc_view": "",
+      "icon": "chart",
+      "label": "Donation Summary",
+      "link_to": "Donation Summary",
+      "type": "Report"
+    },
+    {
+      "color": "#A29BFE",
+      "doc_view": "",
+      "icon": "file",
+      "label": "Membership Report",
+      "link_to": "Membership Report",
+      "type": "Report"
+    },
+    {
+      "color": "#FAB1A0",
+      "doc_view": "",
+      "icon": "check",
+      "label": "Pledge Fulfillment",
+      "link_to": "Pledge Fulfillment",
+      "type": "Report"
     }
   ],
   "title": "Church CRM"

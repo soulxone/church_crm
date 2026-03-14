@@ -1,0 +1,16 @@
+{
+  "action": "Create Entry",
+  "action_label": "Create Church Member",
+  "creation": "2026-03-14 12:00:00.000000",
+  "description": "Add your first church member. Each member automatically gets a linked Contact in ERPNext for integrated communication.",
+  "doctype": "Onboarding Step",
+  "is_complete": 0,
+  "is_single": 0,
+  "is_skipped": 0,
+  "modified": "2026-03-14 13:00:00.000000",
+  "modified_by": "Administrator",
+  "name": "Create Your First Church Member",
+  "owner": "Administrator",
+  "reference_document": "Church Member",
+  "title": "Create Your First Church Member"
+}

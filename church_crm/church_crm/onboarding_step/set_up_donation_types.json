@@ -1,0 +1,17 @@
+{
+  "action": "Go to Page",
+  "action_label": "Set Up Donation Types",
+  "creation": "2026-03-14 12:00:00.000000",
+  "description": "Configure the types of donations your church accepts (e.g., Tithe, General Offering, Building Fund, Missions). Default types are created during installation.",
+  "doctype": "Onboarding Step",
+  "is_complete": 0,
+  "is_single": 0,
+  "is_skipped": 0,
+  "modified": "2026-03-14 13:00:00.000000",
+  "modified_by": "Administrator",
+  "name": "Set Up Donation Types",
+  "owner": "Administrator",
+  "path": "/app/donation-type",
+  "reference_document": "Donation Type",
+  "title": "Set Up Donation Types"
+}
