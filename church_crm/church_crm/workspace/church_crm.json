@@ -1,0 +1,345 @@
+{
+  "charts": [],
+  "content": null,
+  "creation": "2026-03-14 12:00:00.000000",
+  "custom_blocks": [],
+  "doctype": "Workspace",
+  "for_user": "",
+  "hide_custom": 0,
+  "icon": "heart",
+  "idx": 0,
+  "is_hidden": 0,
+  "label": "Church CRM",
+  "links": [
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Contacts & Members",
+      "link_count": 0,
+      "onboard": 0,
+      "type": "header"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Church Member",
+      "link_count": 0,
+      "link_to": "Church Member",
+      "link_type": "DocType",
+      "onboard": 1,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Church Group",
+      "link_count": 0,
+      "link_to": "Church Group",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Church Relationship",
+      "link_count": 0,
+      "link_to": "Church Relationship",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Church Relationship Type",
+      "link_count": 0,
+      "link_to": "Church Relationship Type",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Contact",
+      "link_count": 0,
+      "link_to": "Contact",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Contributions & Accounting",
+      "link_count": 0,
+      "onboard": 0,
+      "type": "header"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Donation",
+      "link_count": 0,
+      "link_to": "Donation",
+      "link_type": "DocType",
+      "onboard": 1,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Donation Type",
+      "link_count": 0,
+      "link_to": "Donation Type",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Pledge",
+      "link_count": 0,
+      "link_to": "Pledge",
+      "link_type": "DocType",
+      "onboard": 1,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Journal Entry",
+      "link_count": 0,
+      "link_to": "Journal Entry",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Payment Entry",
+      "link_count": 0,
+      "link_to": "Payment Entry",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Chart of Accounts",
+      "link_count": 0,
+      "link_to": "Account",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "General Ledger",
+      "link_count": 0,
+      "link_to": "General Ledger",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Memberships",
+      "link_count": 0,
+      "onboard": 0,
+      "type": "header"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Membership",
+      "link_count": 0,
+      "link_to": "Membership",
+      "link_type": "DocType",
+      "onboard": 1,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Membership Type",
+      "link_count": 0,
+      "link_to": "Membership Type",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Events",
+      "link_count": 0,
+      "onboard": 0,
+      "type": "header"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Church Event",
+      "link_count": 0,
+      "link_to": "Church Event",
+      "link_type": "DocType",
+      "onboard": 1,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Reports & Analytics",
+      "link_count": 0,
+      "onboard": 0,
+      "type": "header"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Giving Statement",
+      "link_count": 0,
+      "link_to": "Giving Statement",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Donation Summary",
+      "link_count": 0,
+      "link_to": "Donation Summary",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Membership Report",
+      "link_count": 0,
+      "link_to": "Membership Report",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Pledge Fulfillment",
+      "link_count": 0,
+      "link_to": "Pledge Fulfillment",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Profit and Loss Statement",
+      "link_count": 0,
+      "link_to": "Profit and Loss Statement",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Balance Sheet",
+      "link_count": 0,
+      "link_to": "Balance Sheet",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Settings",
+      "link_count": 0,
+      "onboard": 0,
+      "type": "header"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Donation Type",
+      "link_count": 0,
+      "link_to": "Donation Type",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Membership Type",
+      "link_count": 0,
+      "link_to": "Membership Type",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Church Relationship Type",
+      "link_count": 0,
+      "link_to": "Church Relationship Type",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    }
+  ],
+  "modified": "2026-03-14 12:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Church CRM",
+  "name": "Church CRM",
+  "number_cards": [],
+  "owner": "Administrator",
+  "parent_page": "",
+  "public": 1,
+  "restrict_to_domain": "",
+  "roles": [],
+  "sequence_id": 30,
+  "shortcuts": [
+    {
+      "color": "Green",
+      "doc_view": "New",
+      "label": "New Member",
+      "link_to": "Church Member",
+      "type": "DocType"
+    },
+    {
+      "color": "Blue",
+      "doc_view": "New",
+      "label": "New Donation",
+      "link_to": "Donation",
+      "type": "DocType"
+    },
+    {
+      "color": "Orange",
+      "doc_view": "New",
+      "label": "New Event",
+      "link_to": "Church Event",
+      "type": "DocType"
+    },
+    {
+      "color": "Yellow",
+      "doc_view": "New",
+      "label": "New Pledge",
+      "link_to": "Pledge",
+      "type": "DocType"
+    }
+  ],
+  "title": "Church CRM"
+}

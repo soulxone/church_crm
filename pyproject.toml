@@ -1,0 +1,16 @@
+[project]
+name = "church_crm"
+version = "0.1.0"
+description = "Church CRM - Nonprofit CRM for Frappe/ERPNext inspired by CiviCRM"
+authors = [{name = "PS Church", email = "soulxone@gmail.com"}]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "AGPLv3"}
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.frappe-dependencies]
+frappe = ">=16.0.0-dev,<17.0.0"
+erpnext = ">=16.0.0-dev,<17.0.0"
