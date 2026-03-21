@@ -1,0 +1,688 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<style>
+    .scanner-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    .scanner-header {
+        background: linear-gradient(135deg, #3a9e8a, #4ABFAB, #6BB8D4);
+        color: white;
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    .scanner-header h1 {
+        font-size: 1.5rem;
+        margin: 0 0 0.5rem 0;
+        color: white;
+    }
+    .scanner-header p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 0.9rem;
+    }
+    .capture-zone {
+        border: 3px dashed #4ABFAB;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #f8fffe;
+        margin-bottom: 1.5rem;
+    }
+    .capture-zone:hover, .capture-zone:active {
+        border-color: #3a9e8a;
+        background: #eef9f6;
+    }
+    .capture-zone .icon {
+        font-size: 3rem;
+        color: #4ABFAB;
+        margin-bottom: 0.5rem;
+    }
+    .capture-zone p {
+        color: #666;
+        margin: 0.5rem 0 0;
+        font-size: 0.9rem;
+    }
+    .btn-capture {
+        background: linear-gradient(135deg, #3a9e8a, #4ABFAB);
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-block;
+    }
+    .btn-capture:hover {
+        background: linear-gradient(135deg, #2e8a76, #3a9e8a);
+        color: white;
+    }
+    .btn-submit {
+        background: linear-gradient(135deg, #3a9e8a, #4ABFAB);
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+    }
+    .btn-submit:hover {
+        background: linear-gradient(135deg, #2e8a76, #3a9e8a);
+        color: white;
+    }
+    .btn-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    #preview-section {
+        display: none;
+        margin-bottom: 1.5rem;
+    }
+    #receipt-preview {
+        max-width: 100%;
+        max-height: 300px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+    .preview-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+    }
+    #progress-section {
+        display: none;
+        margin-bottom: 1.5rem;
+    }
+    .progress-bar-container {
+        background: #e9ecef;
+        border-radius: 8px;
+        overflow: hidden;
+        height: 24px;
+    }
+    .progress-bar-fill {
+        background: linear-gradient(90deg, #4ABFAB, #6BB8D4);
+        height: 100%;
+        width: 0%;
+        transition: width 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    .progress-status {
+        text-align: center;
+        color: #666;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+    #form-section {
+        display: none;
+    }
+    .form-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .form-card h3 {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #4ABFAB;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 0.25rem;
+        font-size: 0.85rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 0.95rem;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #4ABFAB;
+        box-shadow: 0 0 0 3px rgba(74, 191, 171, 0.15);
+    }
+    .line-items-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.5rem;
+    }
+    .line-items-table th {
+        background: #f4f6f8;
+        padding: 0.5rem;
+        text-align: left;
+        font-size: 0.8rem;
+        color: #555;
+        border-bottom: 2px solid #ddd;
+    }
+    .line-items-table td {
+        padding: 0.4rem 0.5rem;
+        border-bottom: 1px solid #eee;
+    }
+    .line-items-table input {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.85rem;
+        width: 100%;
+    }
+    .btn-add-item {
+        background: none;
+        border: 1px dashed #4ABFAB;
+        color: #4ABFAB;
+        padding: 0.4rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+    .btn-remove-item {
+        background: none;
+        border: none;
+        color: #e74c3c;
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 0;
+    }
+    .ocr-raw-toggle {
+        font-size: 0.8rem;
+        color: #888;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    #ocr-raw-section {
+        display: none;
+    }
+    .success-message {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+    }
+    .success-message .checkmark {
+        font-size: 3rem;
+        color: #4ABFAB;
+    }
+    @media (max-width: 768px) {
+        .scanner-container { padding: 0.5rem; }
+        .scanner-header { padding: 1.5rem 1rem; }
+        .form-card { padding: 1rem; }
+        .line-items-table th, .line-items-table td { padding: 0.3rem; font-size: 0.8rem; }
+    }
+</style>
+
+<div class="scanner-container">
+    <!-- Header -->
+    <div class="scanner-header">
+        <h1>Expense Receipt Scanner</h1>
+        <p>Photograph a receipt to auto-fill an expense claim</p>
+    </div>
+
+    <!-- Camera Capture Zone -->
+    <div id="capture-zone" class="capture-zone" onclick="document.getElementById('receipt-input').click()">
+        <div class="icon">&#128247;</div>
+        <button type="button" class="btn-capture">Take Photo of Receipt</button>
+        <p>or tap to choose an image file</p>
+    </div>
+    <input type="file" id="receipt-input" accept="image/*" capture="camera" style="display:none">
+
+    <!-- Image Preview -->
+    <div id="preview-section">
+        <img id="receipt-preview" src="" alt="Receipt preview">
+        <div class="preview-actions">
+            <button type="button" class="btn btn-sm btn-secondary"
+                onclick="document.getElementById('receipt-input').click()">Re-take</button>
+            <button type="button" class="btn btn-sm btn-default"
+                onclick="document.getElementById('preview-section').style.display='none'">Hide Preview</button>
+        </div>
+    </div>
+
+    <!-- OCR Progress -->
+    <div id="progress-section">
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar-fill">0%</div>
+        </div>
+        <div id="progress-status" class="progress-status">Initializing OCR...</div>
+    </div>
+
+    <!-- Expense Form (shown after OCR) -->
+    <div id="form-section">
+        <div class="form-card">
+            <h3>Claimant</h3>
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="claimant-name" placeholder="Enter your name" required>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <h3>Receipt Details (OCR Extracted)</h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Vendor / Merchant</label>
+                        <input type="text" id="vendor" placeholder="Store name">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="expense-date">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Total Amount</label>
+                        <input type="number" id="total-amount" step="0.01" min="0" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="expense-category">
+                            <option value="">-- Select Category --</option>
+                            {% for cat in categories %}
+                            <option value="{{ cat.name }}">{{ cat.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <h3>Line Items</h3>
+            <table class="line-items-table">
+                <thead>
+                    <tr>
+                        <th style="width:45%">Description</th>
+                        <th style="width:25%">Amount</th>
+                        <th style="width:25%">Category</th>
+                        <th style="width:5%"></th>
+                    </tr>
+                </thead>
+                <tbody id="line-items-body">
+                </tbody>
+            </table>
+            <button type="button" class="btn-add-item" onclick="addLineItem()">+ Add Item</button>
+        </div>
+
+        <div class="form-card">
+            <h3>Notes</h3>
+            <div class="form-group">
+                <textarea id="expense-notes" rows="3" placeholder="Optional notes about this expense"></textarea>
+            </div>
+            <span class="ocr-raw-toggle" onclick="toggleOcrRaw()">Show raw OCR text</span>
+            <div id="ocr-raw-section" class="form-group" style="margin-top:0.5rem">
+                <textarea id="ocr-raw" rows="6" readonly style="font-family:monospace;font-size:0.8rem;background:#f9f9f9"></textarea>
+            </div>
+        </div>
+
+        <button type="button" class="btn-submit" id="submit-btn" onclick="submitExpenseClaim()">
+            Submit Expense Claim
+        </button>
+    </div>
+
+    <!-- Success Message -->
+    <div id="success-section" class="success-message">
+        <div class="checkmark">&#10004;</div>
+        <h2>Expense Claim Created!</h2>
+        <p id="success-link"></p>
+        <button type="button" class="btn-capture" onclick="resetScanner()" style="margin-top:1rem">
+            Scan Another Receipt
+        </button>
+    </div>
+</div>
+
+<!-- Tesseract.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+<script>
+let uploadedFileUrl = null;
+let ocrRawText = '';
+
+// Camera capture handler
+document.getElementById('receipt-input').addEventListener('change', async function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Show preview
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        document.getElementById('receipt-preview').src = ev.target.result;
+        document.getElementById('preview-section').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+
+    // Upload receipt to Frappe file system
+    uploadReceipt(file);
+
+    // Run OCR
+    await runOCR(file);
+});
+
+async function uploadReceipt(file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('is_private', 1);
+    formData.append('folder', 'Home');
+
+    try {
+        const response = await fetch('/api/method/upload_file', {
+            method: 'POST',
+            headers: {
+                'X-Frappe-CSRF-Token': frappe.csrf_token
+            },
+            body: formData
+        });
+        const data = await response.json();
+        if (data.message && data.message.file_url) {
+            uploadedFileUrl = data.message.file_url;
+        }
+    } catch (err) {
+        console.error('Upload failed:', err);
+    }
+}
+
+async function runOCR(file) {
+    const progressSection = document.getElementById('progress-section');
+    const progressBar = document.getElementById('progress-bar');
+    const progressStatus = document.getElementById('progress-status');
+
+    progressSection.style.display = 'block';
+    document.getElementById('form-section').style.display = 'none';
+
+    try {
+        const worker = await Tesseract.createWorker('eng', 1, {
+            logger: m => {
+                if (m.status) {
+                    const pct = Math.round((m.progress || 0) * 100);
+                    progressBar.style.width = pct + '%';
+                    progressBar.textContent = pct + '%';
+                    progressStatus.textContent = m.status;
+                }
+            }
+        });
+
+        const { data: { text } } = await worker.recognize(file);
+        await worker.terminate();
+
+        ocrRawText = text;
+        document.getElementById('ocr-raw').value = text;
+
+        progressSection.style.display = 'none';
+        parseReceiptText(text);
+        document.getElementById('form-section').style.display = 'block';
+
+        // Pre-fill claimant from logged-in user
+        if (frappe.session && frappe.session.user_fullname) {
+            const nameField = document.getElementById('claimant-name');
+            if (!nameField.value) {
+                nameField.value = frappe.session.user_fullname;
+            }
+        }
+    } catch (err) {
+        console.error('OCR failed:', err);
+        progressStatus.textContent = 'OCR failed. Please fill in details manually.';
+        progressSection.style.display = 'none';
+        document.getElementById('form-section').style.display = 'block';
+    }
+}
+
+function parseReceiptText(text) {
+    const lines = text.split('\n').filter(l => l.trim());
+
+    // Extract vendor (typically first non-empty line)
+    if (lines.length > 0) {
+        document.getElementById('vendor').value = lines[0].trim();
+    }
+
+    // Extract date
+    const datePatterns = [
+        /(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/,
+        /(\w{3}\s+\d{1,2},?\s+\d{4})/,
+        /(\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2})/,
+    ];
+    for (const pattern of datePatterns) {
+        const match = text.match(pattern);
+        if (match) {
+            const normalized = normalizeDate(match[1]);
+            if (normalized) {
+                document.getElementById('expense-date').value = normalized;
+            }
+            break;
+        }
+    }
+
+    // Extract total
+    const totalPatterns = [
+        /(?:TOTAL|AMOUNT\s*DUE|GRAND\s*TOTAL|BALANCE\s*DUE)[:\s]*\$?\s*(\d+[.,]\d{2})/i,
+        /(?:TOTAL)[:\s]*\$?\s*(\d+[.,]\d{2})/i,
+    ];
+    for (const pattern of totalPatterns) {
+        const match = text.match(pattern);
+        if (match) {
+            document.getElementById('total-amount').value = match[1].replace(',', '');
+            break;
+        }
+    }
+
+    // Extract line items
+    const itemPattern = /^(.+?)\s+\$?\s*(\d+[.,]\d{2})\s*$/gm;
+    let itemMatch;
+    const items = [];
+    while ((itemMatch = itemPattern.exec(text)) !== null) {
+        const desc = itemMatch[1].trim();
+        const amt = itemMatch[2].replace(',', '');
+        if (!/total|tax|subtotal|balance|change|tender|cash|credit|debit|visa|mastercard/i.test(desc)) {
+            items.push({ description: desc, amount: parseFloat(amt) });
+        }
+    }
+
+    // Clear existing and add parsed items
+    document.getElementById('line-items-body').innerHTML = '';
+    if (items.length > 0) {
+        items.forEach(item => addLineItem(item.description, item.amount));
+    } else {
+        // If no items parsed, add a single item with the total
+        const total = document.getElementById('total-amount').value;
+        const vendor = document.getElementById('vendor').value;
+        addLineItem(vendor || 'Receipt expense', total || '');
+    }
+}
+
+function normalizeDate(dateStr) {
+    // Try to parse various date formats into YYYY-MM-DD
+    try {
+        // MM/DD/YYYY or MM-DD-YYYY
+        let match = dateStr.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
+        if (match) {
+            let year = match[3];
+            if (year.length === 2) year = '20' + year;
+            const month = match[1].padStart(2, '0');
+            const day = match[2].padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // YYYY-MM-DD or YYYY/MM/DD
+        match = dateStr.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+        if (match) {
+            return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
+        }
+
+        // Mon DD, YYYY
+        const d = new Date(dateStr);
+        if (!isNaN(d.getTime())) {
+            return d.toISOString().split('T')[0];
+        }
+    } catch (e) {}
+    return '';
+}
+
+function addLineItem(description, amount) {
+    const tbody = document.getElementById('line-items-body');
+    const idx = tbody.children.length;
+    const categoryOptions = document.getElementById('expense-category').innerHTML;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td><input type="text" class="item-desc" value="${escapeHtml(description || '')}" placeholder="Description"></td>
+        <td><input type="number" class="item-amount" value="${amount || ''}" step="0.01" min="0" placeholder="0.00"></td>
+        <td><select class="item-category">${categoryOptions}</select></td>
+        <td><button type="button" class="btn-remove-item" onclick="this.closest('tr').remove()">&times;</button></td>
+    `;
+    tbody.appendChild(tr);
+
+    // Set category from main dropdown if selected
+    const mainCat = document.getElementById('expense-category').value;
+    if (mainCat) {
+        tr.querySelector('.item-category').value = mainCat;
+    }
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function toggleOcrRaw() {
+    const section = document.getElementById('ocr-raw-section');
+    section.style.display = section.style.display === 'none' ? 'block' : 'none';
+}
+
+async function submitExpenseClaim() {
+    const claimantName = document.getElementById('claimant-name').value.trim();
+    if (!claimantName) {
+        frappe.msgprint('Please enter your name.');
+        return;
+    }
+
+    const rows = document.getElementById('line-items-body').querySelectorAll('tr');
+    if (rows.length === 0) {
+        frappe.msgprint('Please add at least one expense item.');
+        return;
+    }
+
+    const vendor = document.getElementById('vendor').value.trim();
+    const expenseDate = document.getElementById('expense-date').value;
+    const items = [];
+    const receiptUrls = [];
+
+    rows.forEach((row, idx) => {
+        const desc = row.querySelector('.item-desc').value.trim();
+        const amount = parseFloat(row.querySelector('.item-amount').value) || 0;
+        const category = row.querySelector('.item-category').value;
+
+        if (amount > 0) {
+            items.push({
+                description: desc || vendor || 'Expense',
+                vendor: vendor,
+                amount: amount,
+                category: category,
+                date: expenseDate,
+                ocr_raw_text: idx === 0 ? ocrRawText : ''
+            });
+            receiptUrls.push(idx === 0 ? (uploadedFileUrl || '') : '');
+        }
+    });
+
+    if (items.length === 0) {
+        frappe.msgprint('Please enter an amount for at least one item.');
+        return;
+    }
+
+    // Check that all items have a category
+    const missingCat = items.some(i => !i.category);
+    if (missingCat) {
+        frappe.msgprint('Please select a category for all items.');
+        return;
+    }
+
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    try {
+        const result = await frappe.call({
+            method: 'church_mrm.www.expense_scanner.create_expense_claim',
+            args: {
+                claimant_name: claimantName,
+                items_json: JSON.stringify(items),
+                notes: document.getElementById('expense-notes').value,
+                receipt_urls_json: JSON.stringify(receiptUrls)
+            }
+        });
+
+        if (result && result.message) {
+            document.getElementById('form-section').style.display = 'none';
+            document.getElementById('capture-zone').style.display = 'none';
+            document.getElementById('preview-section').style.display = 'none';
+
+            const successSection = document.getElementById('success-section');
+            successSection.style.display = 'block';
+            document.getElementById('success-link').innerHTML =
+                `Claim <a href="${result.message.route}" style="color:#4ABFAB;font-weight:bold">${result.message.name}</a> has been created.` +
+                `<br><a href="${result.message.route}">Review and submit for approval &rarr;</a>`;
+        }
+    } catch (err) {
+        console.error('Submit failed:', err);
+        frappe.msgprint('Failed to create expense claim. Please try again.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Expense Claim';
+    }
+}
+
+function resetScanner() {
+    document.getElementById('receipt-input').value = '';
+    document.getElementById('preview-section').style.display = 'none';
+    document.getElementById('progress-section').style.display = 'none';
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('success-section').style.display = 'none';
+    document.getElementById('capture-zone').style.display = 'block';
+    document.getElementById('line-items-body').innerHTML = '';
+    document.getElementById('vendor').value = '';
+    document.getElementById('expense-date').value = '';
+    document.getElementById('total-amount').value = '';
+    document.getElementById('expense-category').value = '';
+    document.getElementById('expense-notes').value = '';
+    document.getElementById('ocr-raw').value = '';
+    uploadedFileUrl = null;
+    ocrRawText = '';
+}
+
+// Set default date to today
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('expense-date').value = today;
+});
+</script>
+{% endblock %}

@@ -7,6 +7,8 @@ def after_install():
     create_default_donation_types()
     create_default_membership_types()
     create_default_relationship_types()
+    create_default_expense_categories()
+    create_expense_manager_role()
     create_workspace_sidebar()
     create_desktop_icon()
 
@@ -87,6 +89,36 @@ def create_default_relationship_types():
     frappe.db.commit()
 
 
+def create_default_expense_categories():
+    categories = [
+        {"category_name": "Travel", "description": "Mileage, fuel, lodging, airfare"},
+        {"category_name": "Supplies", "description": "Office and ministry supplies"},
+        {"category_name": "Food/Meals", "description": "Meals and refreshments for events"},
+        {"category_name": "Ministry Materials", "description": "Bibles, curriculum, study materials"},
+        {"category_name": "Utilities", "description": "Electric, water, internet, phone"},
+        {"category_name": "Office", "description": "Printing, postage, office equipment"},
+        {"category_name": "Maintenance", "description": "Building and grounds maintenance"},
+        {"category_name": "Other", "description": "Miscellaneous expenses"},
+    ]
+    for c in categories:
+        if not frappe.db.exists("Expense Category", c["category_name"]):
+            doc = frappe.new_doc("Expense Category")
+            doc.update(c)
+            doc.is_active = 1
+            doc.flags.ignore_mandatory = True
+            doc.insert(ignore_permissions=True)
+    frappe.db.commit()
+
+
+def create_expense_manager_role():
+    if not frappe.db.exists("Role", "Expense Manager"):
+        doc = frappe.new_doc("Role")
+        doc.role_name = "Expense Manager"
+        doc.desk_access = 1
+        doc.insert(ignore_permissions=True)
+        frappe.db.commit()
+
+
 def create_workspace_sidebar():
     """Create the Workspace Sidebar record so Church MRM appears in the desk sidebar with full rail nav."""
     # Delete and recreate to ensure latest items
@@ -141,6 +173,16 @@ def create_workspace_sidebar():
         {"label": "Membership Type", "link_type": "DocType", "type": "Link", "link_to": "Membership Type",
          "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
 
+        # --- Expenses ---
+        {"label": "Expenses", "link_type": "DocType", "type": "Section Break", "link_to": None,
+         "child": 0, "collapsible": 1, "indent": 1, "icon": "expense"},
+        {"label": "Expense Claim", "link_type": "DocType", "type": "Link", "link_to": "Expense Claim",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Expense Category", "link_type": "DocType", "type": "Link", "link_to": "Expense Category",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Receipt Scanner", "link_type": "URL", "type": "Link", "link_to": "/expense-scanner",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+
         # --- Events ---
         {"label": "Events", "link_type": "DocType", "type": "Section Break", "link_to": None,
          "child": 0, "collapsible": 1, "indent": 1, "icon": "calendar"},
@@ -165,6 +207,8 @@ def create_workspace_sidebar():
         {"label": "Settings", "link_type": "DocType", "type": "Section Break", "link_to": None,
          "child": 0, "collapsible": 1, "indent": 1, "icon": "setting-gear"},
         {"label": "Church Relationship Type", "link_type": "DocType", "type": "Link", "link_to": "Church Relationship Type",
+         "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
+        {"label": "Expense Settings", "link_type": "DocType", "type": "Link", "link_to": "Expense Settings",
          "child": 1, "collapsible": 1, "indent": 0, "icon": ""},
     ]
 
