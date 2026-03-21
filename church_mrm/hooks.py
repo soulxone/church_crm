@@ -17,6 +17,9 @@ after_install = "church_mrm.install.after_install"
 app_include_css = "/assets/church_mrm/css/church_mrm.css"
 app_include_js = "/assets/church_mrm/js/church_mrm.js"
 
+# Include JS on website portal pages
+web_include_js = "/assets/church_mrm/js/website.js"
+
 # Extend existing ERPNext DocTypes
 doctype_js = {
     "Contact": "public/js/contact.js"
