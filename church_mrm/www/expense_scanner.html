@@ -240,7 +240,8 @@
     <!-- Header -->
     <div class="scanner-header">
         <h1>Expense Receipt Scanner</h1>
-        <p>Photograph a receipt to auto-fill an expense claim</p>
+        <p>Logged in as <strong>{{ user_fullname }}</strong></p>
+        <p style="font-size:0.8rem;opacity:0.8">Expenses will be filed under your account</p>
     </div>
 
     <!-- Camera Capture Zone -->
@@ -679,10 +680,16 @@ function resetScanner() {
     ocrRawText = '';
 }
 
-// Set default date to today
+// Set defaults on page load
 document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('expense-date').value = today;
+
+    // Auto-fill claimant name from logged-in user
+    const nameField = document.getElementById('claimant-name');
+    if (!nameField.value) {
+        nameField.value = '{{ user_fullname }}';
+    }
 });
 </script>
 {% endblock %}

@@ -6,6 +6,11 @@ no_cache = 1
 
 
 def get_context(context):
+    # Require login — redirect guests to login page
+    if frappe.session.user == "Guest":
+        frappe.local.flags.redirect_location = "/login?redirect-to=/expense-scanner"
+        raise frappe.Redirect
+
     context.page_title = "Expense Scanner - PS Church"
     context.no_breadcrumbs = True
     context.categories = frappe.get_all(
@@ -14,6 +19,9 @@ def get_context(context):
         fields=["name", "category_name"],
         order_by="category_name asc"
     )
+    # Pass logged-in user info for auto-fill
+    context.user_fullname = frappe.utils.get_fullname(frappe.session.user)
+    context.user_email = frappe.session.user
     return context
 
 
