@@ -78,10 +78,11 @@ website_route_rules = [
     {"from_route": "/membership-signup", "to_route": "membership_signup"},
     {"from_route": "/expense-scanner", "to_route": "expense_scanner"},
     {"from_route": "/origins", "to_route": "origins"},
+    {"from_route": "/events/detail", "to_route": "events/detail"},
 ]
 
 # Website context for portal
 website_context = {
     "favicon": "/assets/church_mrm/images/church_mrm.svg",
-    "splash_image": "/assets/church_mrm/images/og-banner.svg",
+    "splash_image": "/assets/church_mrm/images/og-banner.png",
 }
