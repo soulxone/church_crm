@@ -25,7 +25,7 @@
       "label": "API Configuration"
     },
     {
-      "default": "claude-3-5-sonnet-20241022",
+      "default": "claude-sonnet-4-20250514",
       "fieldname": "claude_model",
       "fieldtype": "Data",
       "label": "Claude Model",

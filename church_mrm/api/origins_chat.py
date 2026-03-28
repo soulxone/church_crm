@@ -45,7 +45,7 @@ def _get_settings():
     try:
         settings = frappe.get_single("AI Settings")
         return {
-            "model": settings.claude_model or "claude-3-5-sonnet-20241022",
+            "model": settings.claude_model or "claude-sonnet-4-20250514",
             "max_tokens": settings.max_tokens or 4096,
             "temperature": settings.temperature or 0.7,
             "system_prompt": settings.system_prompt or DEFAULT_SYSTEM_PROMPT,
@@ -56,7 +56,7 @@ def _get_settings():
         }
     except Exception:
         return {
-            "model": "claude-3-5-sonnet-20241022",
+            "model": "claude-sonnet-4-20250514",
             "max_tokens": 4096,
             "temperature": 0.7,
             "system_prompt": DEFAULT_SYSTEM_PROMPT,
