@@ -45,7 +45,7 @@ def _get_settings():
     try:
         settings = frappe.get_single("AI Settings")
         return {
-            "model": settings.claude_model or "claude-sonnet-4-20250514",
+            "model": settings.claude_model or "claude-3-5-sonnet-20241022",
             "max_tokens": settings.max_tokens or 4096,
             "temperature": settings.temperature or 0.7,
             "system_prompt": settings.system_prompt or DEFAULT_SYSTEM_PROMPT,
@@ -56,7 +56,7 @@ def _get_settings():
         }
     except Exception:
         return {
-            "model": "claude-sonnet-4-20250514",
+            "model": "claude-3-5-sonnet-20241022",
             "max_tokens": 4096,
             "temperature": 0.7,
             "system_prompt": DEFAULT_SYSTEM_PROMPT,
@@ -145,13 +145,15 @@ def _call_claude(messages, settings):
         }
     except http_requests.exceptions.HTTPError as e:
         status = e.response.status_code if e.response is not None else 0
+        error_body = e.response.text if e.response is not None else "no response body"
         if status == 429:
             frappe.throw("AI service is busy. Please wait a moment and try again.")
         elif status == 401:
+            frappe.log_error(f"Claude API 401: {error_body}", "Origins Chat")
             frappe.throw("AI service authentication failed. Contact administrator.")
         else:
-            frappe.log_error(f"Claude API error: {e}", "Origins Chat")
-            frappe.throw("AI service temporarily unavailable. Please try again.")
+            frappe.log_error(f"Claude API {status} error: {e}\nBody: {error_body}", "Origins Chat")
+            frappe.throw(f"AI service error ({status}): {error_body[:300]}")
     except http_requests.exceptions.Timeout:
         frappe.throw("AI service timed out. Please try a shorter question.")
     except Exception as e:
