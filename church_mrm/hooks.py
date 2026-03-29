@@ -86,6 +86,7 @@ website_route_rules = [
     {"from_route": "/origins", "to_route": "origins"},
     {"from_route": "/events/detail", "to_route": "events/detail"},
     {"from_route": "/gallery", "to_route": "gallery"},
+    {"from_route": "/videos", "to_route": "videos"},
 ]
 
 # Website context for portal
