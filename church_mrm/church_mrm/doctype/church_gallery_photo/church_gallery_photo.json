@@ -1,0 +1,99 @@
+{
+  "actions": [],
+  "autoname": "format:PHOTO-{####}",
+  "creation": "2026-03-28 20:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "image",
+    "caption",
+    "column_break_1",
+    "category",
+    "display_order",
+    "section_break_publishing",
+    "is_published",
+    "uploaded_by"
+  ],
+  "fields": [
+    {
+      "fieldname": "image",
+      "fieldtype": "Attach Image",
+      "in_list_view": 1,
+      "label": "Photo",
+      "reqd": 1
+    },
+    {
+      "fieldname": "caption",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Caption"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "category",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Category",
+      "options": "Gallery Category"
+    },
+    {
+      "default": "0",
+      "fieldname": "display_order",
+      "fieldtype": "Int",
+      "label": "Display Order"
+    },
+    {
+      "fieldname": "section_break_publishing",
+      "fieldtype": "Section Break",
+      "label": "Publishing"
+    },
+    {
+      "default": "1",
+      "fieldname": "is_published",
+      "fieldtype": "Check",
+      "in_list_view": 1,
+      "label": "Published"
+    },
+    {
+      "fieldname": "uploaded_by",
+      "fieldtype": "Link",
+      "label": "Uploaded By",
+      "options": "User",
+      "read_only": 1
+    }
+  ],
+  "image_field": "image",
+  "index_web_pages_for_search": 0,
+  "links": [],
+  "modified": "2026-03-28 20:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Church MRM",
+  "name": "Church Gallery Photo",
+  "naming_rule": "Expression (old style)",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "read": 1,
+      "role": "All"
+    }
+  ],
+  "sort_field": "display_order",
+  "sort_order": "ASC",
+  "states": [],
+  "track_changes": 1
+}

@@ -213,6 +213,47 @@
     {
       "hidden": 0,
       "is_query_report": 0,
+      "label": "Gallery & Media",
+      "link_count": 0,
+      "onboard": 0,
+      "type": "Card Break"
+    },
+    {
+      "hidden": 0,
+      "icon": "image",
+      "is_query_report": 0,
+      "label": "Church Gallery Photo",
+      "link_count": 0,
+      "link_to": "Church Gallery Photo",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "icon": "folder-open",
+      "is_query_report": 0,
+      "label": "Gallery Category",
+      "link_count": 0,
+      "link_to": "Gallery Category",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "icon": "video",
+      "is_query_report": 0,
+      "label": "Church Video",
+      "link_count": 0,
+      "link_to": "Church Video",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
       "label": "Reports & Analytics",
       "link_count": 0,
       "onboard": 0,
