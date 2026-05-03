@@ -8,7 +8,7 @@ def get_context(context):
     context.title = context.page_title
     context.metatags = {
         "title": context.page_title,
-        "description": "Watch free sermons, Bible studies, and teaching videos from Pleasant Springs Church. Septuagint study, doctrine, and discipleship from Henderson, Tennessee.",
+        "description": "Watch free sermons, Bible studies, and teaching videos from Pleasant Springs Church. Septuagint study, doctrine, and discipleship from Pinson, Tennessee.",
         "keywords": "church sermons online, free christian video, septuagint sermon, bible teaching video, pleasant springs videos",
         "image": "https://ps-church.com/files/og-default.png",
         "og:type": "website",

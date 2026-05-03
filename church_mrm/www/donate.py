@@ -4,16 +4,16 @@ no_cache = 1
 
 
 def get_context(context):
-    context.page_title = "Donate to Pleasant Springs Church | Henderson, TN"
+    context.page_title = "Donate to Pleasant Springs Church | Pinson, TN"
     context.title = context.page_title
     context.metatags = {
         "title": context.page_title,
         "description": "Support the ministry of Pleasant Springs Church — Bible study, discipleship, the AHAVAH app, and the cemetery. Online giving with a tax-deductible receipt.",
-        "keywords": "donate pleasant springs church, christian giving tennessee, church donation henderson tn, tithe online",
+        "keywords": "donate pleasant springs church, christian giving tennessee, church donation pinson tn, tithe online",
         "image": "https://ps-church.com/files/og-default.png",
         "og:type": "website",
         "og:title": "Donate to Pleasant Springs Church",
-        "og:description": "Support free Bible teaching, the AHAVAH app, and cemetery care in Henderson, Tennessee.",
+        "og:description": "Support free Bible teaching, the AHAVAH app, and cemetery care in Pinson, Tennessee.",
         "og:image": "https://ps-church.com/files/og-default.png",
         "og:url": "https://ps-church.com/donate",
         "twitter:card": "summary_large_image",

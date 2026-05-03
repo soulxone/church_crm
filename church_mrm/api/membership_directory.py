@@ -182,7 +182,7 @@ def generate_directory_pdf():
         <div style="text-align:center;margin:16px 0 8px 0;">
             <div style="font-size:20px;font-weight:bold;color:#3a9e8a;">Membership Directory</div>
             <div style="font-size:10px;color:#5A6C7D;margin-top:4px;">
-                Henderson / Pinson, Tennessee &bull; {len(members)} Active Members &bull; {now.strftime('%B %Y')}
+                Pinson, Tennessee &bull; {len(members)} Active Members &bull; {now.strftime('%B %Y')}
             </div>
             <div style="width:60%;margin:8px auto;border-top:2px solid #4ABFAB;"></div>
             <div style="font-size:8px;color:#8899AA;font-style:italic;">

@@ -4,16 +4,16 @@ no_cache = 1
 
 
 def get_context(context):
-    context.page_title = "Become a Member | Pleasant Springs Church, Henderson TN"
+    context.page_title = "Become a Member | Pleasant Springs Church, Pinson TN"
     context.title = context.page_title
     context.metatags = {
         "title": context.page_title,
-        "description": "Join Pleasant Springs Church in Henderson, Tennessee. Sign up to become a member of our community of faith — visitors and seekers always welcome too.",
-        "keywords": "join pleasant springs church, church membership henderson tn, christian community tennessee",
+        "description": "Join Pleasant Springs Church in Pinson, Tennessee. Sign up to become a member of our community of faith — visitors and seekers always welcome too.",
+        "keywords": "join pleasant springs church, church membership pinson tn, christian community tennessee",
         "image": "https://ps-church.com/files/og-default.png",
         "og:type": "website",
         "og:title": "Become a Member — Pleasant Springs Church",
-        "og:description": "Join our community of faith in Henderson, Tennessee.",
+        "og:description": "Join our community of faith in Pinson, Tennessee.",
         "og:image": "https://ps-church.com/files/og-default.png",
         "og:url": "https://ps-church.com/membership-signup",
         "twitter:card": "summary_large_image",
